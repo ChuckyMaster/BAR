@@ -52,3 +52,67 @@ $cocktail;
         <!-- END ONE CARD -->
 
 
+<!-- FORM AFFICHAGE COMMENTAIRE SPLIT  -->
+
+
+<div class="container">
+
+<div class="row"> 
+
+<!-- PARTIE FORM GAUCHE -->
+<div class="col-6">  
+  
+<form action="createComment.php" method="post">
+<div class="form-group">
+  <input type="text" name="author" placeholder="Your name" class="form-control-plaintext mb-5">
+</div>
+<div class="form-group">
+  <textarea name="content" id="" cols="30" rows="10" placeholder="Your comment..." class="form-control"></textarea>
+</div>
+<div class="form-group mt-4">
+
+
+<button action="cocktail.php?id=<?=$cocktail['id'] ?>" class="btn btn-outline-secondary">POST</button>
+
+  
+</div>
+
+
+</form></div>
+
+
+<!-- PARTIE FORM DROITE -->
+
+<div class="col-6"> 
+
+
+<?php foreach($comments as $comment) :?>
+<!-- UN COMMENTAIRE -->
+<div class="container mb-3">
+  <div class="row d-flex flex-column">
+    <div class="col-12">
+      <div class="comment">
+      <h4 class="mb-4 mt-4"> <?=  $comment['author']?></h4>
+      <p> <?= $comment['comment'] ?>  </p>
+    </div>
+   </div>
+     
+  </div>
+</div>
+<!-- fin un commentaire -->
+<?php  endforeach ?>
+
+<?php 
+  if(!$comments) { ?>
+
+    <h4 class="text-muted text-center mt-5"> Nobody comment yet....</h4>
+
+
+<?php  }?>
+
+
+
+
+</div>
+</div>
+</div>
