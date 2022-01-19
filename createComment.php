@@ -1,56 +1,55 @@
 <?php
-require_once 'db.php';
+
+require_once './core/Models/Comment.php';
+require_once './core/Models/Cocktail.php';
+require_once './core/libraries/tools.php';
 
 $authorInput = null;
 $commentInput = null;
+$cocktailId = null;
+
+if(!empty($_POST['cocktailId']) && ctype_digit($_POST['cocktailId'])){
+    $cocktailId = $_POST['cocktailId'];
+}
+
 
 
 if(
-    !empty($_POST['author'])
-    &&
-    !empty($_POST['content'])
-){
+    !empty($_POST['author'])){
+        $authorInput = htmlspecialchars($_POST['author']);
+    }
 
-    $authorInput = htmlspecialchars($_POST['author']);
+  if(!empty($_POST['content']))  
+{
+
+   
     $commentInput = htmlspecialchars($_POST['content']);
 };
 
 
-// RECCUP ID COCKTAIL
+if(!$cocktailId || !$commentInput || !$authorInput){
 
-$requestOneCocktail = $pdo->prepare("SELECT * FROM cocktails
- WHERE id = :cocktail_id");
+    redirect("cocktail.php?id={$cocktailId}");
+}
 
-$requestOneCocktail->execute([
-    "cocktail_id" => $id
-]);
-$cocktail=$requestOneCocktail->fetch();
+
+//Verification du cocktail
+
+$modelCocktail = new Cocktail();
+
+$cocktail = $modelCocktail->findCocktailById($cocktailId);
 
 if(!$cocktail){
-    header("Location: index.php?info=noId");
-    exit();
+    redirect("index.php?info=noId");
 }
 
-if($authorInput && $commentInput){
-    $createComment = $pdo ->prepare("INSERT INTO comments (author, comment)
-    
-    VALUES (:author, :comment)
-    
-    WHERE id = :cocktail_id");
+$modelComment = new Comment();
+$modelComment->saveComment($authorInput, $commentInput, $cocktailId);
 
 
-$createComment->execute([
-
-    "author" => $authorInput,
-    "comment" => $commentInput,
-    "cocktail_id" => $id 
-]);
-
-$id = $pdo->lastInsertId();
-header("Location: cocktail.php?id=$id");
+redirect("cocktail.php?id={$cocktailId}");
 
 
-}
 
 
 ?>

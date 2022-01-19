@@ -70,11 +70,11 @@ $cocktail;
   <textarea name="content" id="" cols="30" rows="10" placeholder="Your comment..." class="form-control"></textarea>
 </div>
 <div class="form-group mt-4">
+<button value="<?=$cocktail['id']?>" 
+class="btn btn-outline-secondary" 
+name="cocktailId">POST</button>
 
 
-<button action="cocktail.php?id=<?=$cocktail['id'] ?>" class="btn btn-outline-secondary">POST</button>
-
-  
 </div>
 
 
@@ -94,9 +94,13 @@ $cocktail;
       <div class="comment">
       <h4 class="mb-4 mt-4"> <?=  $comment['author']?></h4>
       <p> <?= $comment['comment'] ?>  </p>
+
+      <p> ID : <?= $comment['id']?></p>
     </div>
    </div>
-     
+   <form action="deleteComment.php" method="post">
+                <button type="submit" class="btn btn-danger" name="idComment" value="<?= $comment['id']?>">Supprimer</button>
+            </form>
   </div>
 </div>
 <!-- fin un commentaire -->

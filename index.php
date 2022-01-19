@@ -1,20 +1,28 @@
 <?php
 
-require_once "db.php";
+require_once "core/libraries/db.php";
+require_once "core/libraries/tools.php";
+require_once "core/Models/Cocktail.php";
 
-$requestAllCocktails = $pdo->query("SELECT * FROM cocktails");
 
-$cocktails = $requestAllCocktails->fetchAll();
 
-$pageTitle = "All the Cocktails";
 
-ob_start();
 
-require_once "templates/cocktails/index.html.php";
+//Point d'entrée
 
-$pageContent = ob_get_clean();
+$modelCocktail = new Cocktail();
 
-require_once "templates/layout.html.php";
+$cocktails = $modelCocktail->findAllCocktails();
+
+
+
+
+
+$pageTitle = "Tous les Cocktails";
+
+
+render("cocktails/index", compact('cocktails', 'pageTitle'));
+
 
 
 
