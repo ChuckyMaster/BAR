@@ -2,10 +2,10 @@
 
 namespace Models;
 
-require_once dirname(__FILE__) . "/../libraries/db.php";
-require_once "Model.php";
 
-class Comment extends Model{
+require_once "AbstractModel.php";
+
+class Comment extends AbstractModel{
 
 
 /**

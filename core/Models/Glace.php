@@ -2,13 +2,33 @@
 
 namespace Models;
 
-require_once "Model.php";
-
-class Glace extends Model {
+require_once "AbstractModel.php";
 
 
-    protected string $table = "glaces";
+
+class Glace extends AbstractModel {
+    
+    protected string $tableName;
+
+    /**
+     * ajoute une glace
+     * @return string $description
+     */
+    public function save(string $description):void
+    {
+        $sql = $this->pdo->prepare("INSERT INTO {$this->tableName} (description) VALUES (:description)");
+
+        $sql->execute([
+            'description' => $description
+        ]);
+    }
+
+
 }
+
+
+
+
 
 
 

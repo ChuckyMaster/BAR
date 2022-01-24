@@ -1,18 +1,10 @@
 <?php
 
-require_once "core/Controllers/Glace.php";
-
-$typeGlace = new \Controllers\Glace();
-$typeGlace->index();
+    require_once "core/Controllers/Cocktail.php";
 
 
-
-
-
-
-
-
-
+    $typeGlace = new \Controllers\Glace();
+    $typeGlace->index();
 
 
 ?>

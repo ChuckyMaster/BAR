@@ -1,7 +1,9 @@
 <?php
 
+
 namespace Controllers;
 
+use Models\AbstractModel;
 
 require_once "core/libraries/tools.php";
 
@@ -9,25 +11,36 @@ require_once "core/Controllers/AbstractController.php";
 
 
 
-
-class Glace extends AbstractController
+class Glace extends AbstractModel 
 {
 
-    protected $defautModelName = \Models\Glace::class;
-
+    protected $defaultName = \Models\Glace::class;
 
     /**
-     * affiche les glaces
+     * 
+     * affiche la page des glaces
+     * @return void
      */
     public function index():void
+
     {
+
         $glaces = $this->defaultModel->findAll();
 
-        $pageTitle = "Glaces !";
+        $pageTitle = "ICE CREAM";
 
-        render("glaces/index", compact("pageTitle", "glaces"));
+        render("glaces/inddex", compact("pageTitle", "glaces"));
+
     }
 }
+
+
+
+
+
+
+
+
 
 
 

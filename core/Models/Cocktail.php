@@ -2,13 +2,13 @@
 namespace Models;
 
 
-require_once "Model.php";
+require_once "AbstractModel.php";
 
 // echo "HELLLLLOOOOOOOOOOOOOOOOOOOOOO";
 
 
 
-class Cocktail extends Model {
+class Cocktail extends AbstractModel {
 
 
 protected string $table = "cocktails";

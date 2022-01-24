@@ -9,7 +9,7 @@ require_once "core/Models/Glace.php";
 
 abstract class AbstractController {
 
-    protected object $defaultModel;
+    protected $defaultModel;
 
     protected $defaultModelName;
 
