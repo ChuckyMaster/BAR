@@ -1,9 +1,11 @@
 <?php
 
+namespace Models;
+
 require_once dirname(__FILE__) . "/../libraries/db.php";
+require_once "Model.php";
 
-
-class Comment {
+class Comment extends Model{
 
 
 /**
@@ -16,13 +18,13 @@ class Comment {
  * @return array|bool
  * 
  */
- public function findAllCommentsCocktail(int $cocktail_id)
+ public function findAllByCocktail(int $cocktail_id)
 {
 
 
-        $pdo = getPdo();
+        
 
-        $requestComments = $pdo->prepare("SELECT * FROM comments
+        $requestComments = $this->pdo->prepare("SELECT * FROM comments
         WHERE cocktail_id = :cocktail_id");
 
         $requestComments->execute([
@@ -36,54 +38,19 @@ class Comment {
 
 }
 
+
+
 /**
- * 
- * 
- * trouve un commentaire par son id
- * renvoie un tableau contenant un commentaire
- * 
- * @param integer $comment_id
- * @return array|bool
- * 
- */
+*enregistre un commentaire dans la base de donn"és
+*@param string author
+*@param string content
+*@param integer $cocktailId
+*/
 
- public function findCommentById(int $comment_id){
+public function save(string $author, string $content, int $cocktailId):void{
 
 
-        $pdo = getPdo();
-
-
-
-        $requestOneComment =  $pdo->prepare("SELECT *FROM comments WHERE id = :comment_id");
-
-        $requestOneComment->execute([
-                "comment_id" => $comment_id
-        ]);
-
-        $comment = $requestOneComment->fetch();
-
-        return $comment;
-
-
- }
-
-
- public function removeComment(int $comment_id): void {
-
-        $pdo = getPdo();
-
-        $requestRemove = $pdo->prepare("DELETE FROM comments WHERE id = :comment_id");
-
-        $requestRemove->execute([
-                "comment_id" => $comment_id
-        ]);
-}
-
-public function saveComment(string $author, string $content, int $cocktailId):void{
-
-    $pdo = getPdo();
-
-    $requestCreateComment = $pdo->prepare("INSERT INTO comments
+    $requestCreateComment = $this->pdo->prepare("INSERT INTO comments
     (author, comment, cocktail_id)
     VALUES(:comment_author, :comment_content, :cocktail_id)");
 

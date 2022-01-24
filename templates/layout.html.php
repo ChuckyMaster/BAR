@@ -1,11 +1,11 @@
 <?php 
 
 // var_dump($pageTitle);
-echo "  POST: ";
-var_dump($_POST);
+// echo "  POST: ";
+// var_dump($_POST);
 
-echo " GET :";
-var_dump($_GET);
+// echo " GET :";
+// var_dump($_GET);
 
 ?>
 
@@ -54,6 +54,10 @@ var_dump($_GET);
               <h1 class="text-secondary">Welcome to Mortal Cocktails</h1>
 
               <a href="createCocktail.php" class="btn btn-outline-primary mt-3"> Add a Cocktail</a>
+                <a href="sandwichs.php" class="btn btn-outline-primary mt-3"> Sandwichs</a>
+                <a href="infos.php" class="btn btn-outline-primary mt-3"> infos</a>
+
+
             </div>
 
             

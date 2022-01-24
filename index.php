@@ -1,27 +1,11 @@
 <?php
 
-require_once "core/libraries/db.php";
-require_once "core/libraries/tools.php";
-require_once "core/Models/Cocktail.php";
+require_once "core/controllers/Cocktail.php";
 
 
+$typeCcoktail = new \Controllers\Cocktail();
 
-
-
-//Point d'entrée
-
-$modelCocktail = new Cocktail();
-
-$cocktails = $modelCocktail->findAllCocktails();
-
-
-
-
-
-$pageTitle = "Tous les Cocktails";
-
-
-render("cocktails/index", compact('cocktails', 'pageTitle'));
+$typeCcoktail->index();
 
 
 

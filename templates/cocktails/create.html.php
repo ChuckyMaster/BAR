@@ -24,8 +24,8 @@
   </div>
 
   <div class="form-group">
-    <label for="ingredients" class="form-label mt-4">Ingredients</label>
-    <textarea class="form-control" name="ingredients" rows="3"></textarea>
+    <label for="composition" class="form-label mt-4">Composition</label>
+    <textarea class="form-control" name="composition" rows="3"></textarea>
 
 
 

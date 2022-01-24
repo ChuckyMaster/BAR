@@ -1,7 +1,7 @@
 <!-- AFFICHAGE D'UN COCKTAIL -->
 
 <?php 
-$cocktail;
+
 
 
 
