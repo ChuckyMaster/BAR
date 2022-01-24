@@ -3,18 +3,20 @@
 
 namespace Controllers;
 
-use Models\AbstractModel;
+
 
 require_once "core/libraries/tools.php";
 
 require_once "core/Controllers/AbstractController.php";
 
+require_once "core/Models/Glace.php";
 
 
-class Glace extends AbstractModel 
+
+class Glace extends AbstractController
 {
 
-    protected $defaultName = \Models\Glace::class;
+    protected $defaultModelName = \Models\Glace::class;
 
     /**
      * 

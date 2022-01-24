@@ -8,7 +8,7 @@ require_once "AbstractModel.php";
 
 class Glace extends AbstractModel {
     
-    protected string $tableName;
+    protected string $tableName = "glaces";
 
     /**
      * ajoute une glace
