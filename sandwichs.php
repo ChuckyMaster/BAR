@@ -1,22 +1,10 @@
 <?php
 
-
-require_once "core/libraries/tools.php";
-require_once "core/Models/Sandwich.php";
+require_once "core/Controllers/Sandwich.php";
 
 
-
-$modelSandwich = new Sandwich();
-
-$sandwichs = $modelSandwich->findAll();
-
-
-
-$pageTitle = "Sandwichs";
-
-
-
-render("sandwichs/index", compact('sandwichs', 'pageTitle'));
+$typeSandwich = new \Controllers\Sandwich();
+$typeSandwich->index();
 
 
 

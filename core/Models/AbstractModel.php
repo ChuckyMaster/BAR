@@ -69,7 +69,7 @@ public function remove(int $id): void {
 
        
 
-    $requestRemove = $this->pdo->prepare("DELETE FROM {$this->table} WHERE id = :id");
+    $requestRemove = $this->pdo->prepare("DELETE FROM {$this->tableName} WHERE id = :id");
 
     $requestRemove->execute([
             "id" => $id

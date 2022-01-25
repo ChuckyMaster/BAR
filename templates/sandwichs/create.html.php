@@ -1,8 +1,10 @@
 
 
+<!-- 
+method POST
 
-
-
+description
+price -->
 
 <div class="container">
     <div class="row justify-content-center">

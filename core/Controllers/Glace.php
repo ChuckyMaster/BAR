@@ -21,9 +21,9 @@ class Glace extends AbstractController
     /**
      * 
      * affiche la page des glaces
-     * @return void
+     * @return 
      */
-    public function index():void
+    public function index()
 
     {
         
@@ -32,7 +32,7 @@ class Glace extends AbstractController
 
         $pageTitle = "ICE CREAM";
 
-        render("glaces/index", compact("pageTitle", "glaces"));
+        return $this->render("glaces/index", compact("pageTitle", "glaces"));
 
     }
 
@@ -40,7 +40,7 @@ class Glace extends AbstractController
      * 
      * affiche une glace par son ID
      */
-    public function show():void
+    public function show()
     {
 
         $id = null;
@@ -51,12 +51,14 @@ class Glace extends AbstractController
 
         $glace = $this->defaultModel->findById($id);
 
-        if (!$glace) { redirect('index.php?info=noId');
+        if (!$glace) { return $this->redirect('index.php?info=noId');
         }
 
         $pageTitle = $glace['description'];
 
-        render("glaces/show", compact('pageTitle', 'glace'));
+        $this->index();
+
+        // render("glaces/show", compact('pageTitle', 'glace'));
 
     }
 
@@ -64,7 +66,7 @@ class Glace extends AbstractController
      * Supprime une glace par son ID et redirige vers l'index des glaces
      * @return void
      */
-    public function delete():void{
+    public function delete(){
 
         $id = null;
 
@@ -73,17 +75,17 @@ class Glace extends AbstractController
         }
 
         if (!$id){
-            redirect('index.php?info=noId');
+            return $this->redirect('index.php?info=noId');
         }
 
 
         if( !$this->defaultModel->findById($id)){
-            redirect('index.php?info=noId');
+            return $this->redirect('index.php?info=noId');
         }
 
         $this->defaultModel->remove($id);
 
-        redirect('index.php');
+        return $this->redirect('glaces.php');
     }
 
 
@@ -92,7 +94,7 @@ class Glace extends AbstractController
      * 
      * @return void
      */
-    public function new():void{
+    public function new(){
 
         $description = null;
 
@@ -104,10 +106,10 @@ class Glace extends AbstractController
 
             $this->defaultModel->save($description);
 
-            redirect('index.php');
+          $this->index();
         }
 
-        render("glaces/create", ["pageTitle" => 'new glace']);
+        return $this->render("glaces/create", ["pageTitle" => 'new glace']);
     }
 
 

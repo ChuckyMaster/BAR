@@ -15,7 +15,7 @@ class Comment extends AbstractController{
          * Supprime un commentaire par son ID
          * @return void
          */
-        public function delete():void
+        public function delete()
         {
             $id = null;
 
@@ -32,7 +32,7 @@ class Comment extends AbstractController{
             $comment = $this->defaultModel->findById($id);
 
 
-            redirect("cocktail.php?id{$comment['id']}");
+            return $this->redirect("cocktail.php?id{$comment['id']}");
         }
 
 
@@ -42,7 +42,7 @@ class Comment extends AbstractController{
          * @return void
          * 
          */
-        public function new():void{
+        public function new(){
             if ( !empty($_POST['cocktailId']) && ctype_digit($_POST['cocktailId'])) {
 
                 $cocktailId = $_POST['cocktailId'];
@@ -58,7 +58,7 @@ class Comment extends AbstractController{
 
             if (!$cocktailId || $content || $author) {
 
-                redirect("cocktail.php?id={$cocktailId}");
+                return $this->redirect("cocktail.php?id={$cocktailId}");
             }
 
             //Verifier que le cocktail existe
@@ -68,12 +68,12 @@ class Comment extends AbstractController{
             $cocktail = $modelCocktail->findById($cocktailId);
 
             if (!$cocktail) {
-                redirect("index.php?info=noId");
+                return $this->redirect("index.php?info=noId");
             }
 
             $this->defaultModel->save($author, $content, $cocktailId);
 
-            redirect("cocktail.php?id={$cocktailId}");
+            return $this->redirect("cocktail.php?id={$cocktailId}");
         }
 
 

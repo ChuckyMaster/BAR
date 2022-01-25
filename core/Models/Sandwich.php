@@ -1,39 +1,39 @@
 <?php
+namespace Models;
+
+require_once "AbstractModel.php";
+
+class Sandwich extends AbstractModel {
 
 
-require_once "Model.php";
-
-
-
-class Sandwich extends Model {
-
-
-
-protected string $table = "sandwichs";
-
-
-    /**
-     * 
-     * 
-     */
-    public function create($description, $price){
-
-        $request = $this->pdo->prepare("INSERT INTO {$this->table} 
-        (description, prix) VALUES (:description, :prix)");
-
-        $request->execute([
-            "description" => $description,
-            "prix" => $price
-        ]);
-    }
+protected string $tableName = "sandwichs";
 
 
 
+/**
+ * 
+ * Ajoute un sandwich dans la BDD
+ * @param string $description
+ * @param int $prix
+ * 
+ * @return void
+ */
+public function save(string $description, int $prix):void
+{
 
+    $sql = $this->pdo->prepare("INSERT INTO {$this->tableName} (description, prix) 
+    VALUES (:descritpion, :prix)");
 
-
+    $sql->execute([
+        'description' => $description,
+        'prix' => $prix
+    ]);
+}
 
 }
+
+
+
 
 
 

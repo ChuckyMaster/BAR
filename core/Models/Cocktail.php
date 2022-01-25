@@ -11,7 +11,7 @@ require_once "AbstractModel.php";
 class Cocktail extends AbstractModel {
 
 
-protected string $table = "cocktails";
+protected string $tableName = "cocktails";
 
 
 

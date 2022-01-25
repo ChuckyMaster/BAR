@@ -3,9 +3,9 @@
 
 namespace Controllers;
 
+use App\Response;
 
-
-    require_once "core/libraries/tools.php";
+require_once "core/libraries/tools.php";
 
     require_once "core/Models/Comment.php";
 
@@ -19,7 +19,7 @@ class Cocktail extends AbstractController
  * 
  * affiche des cocktails ave tous les cockatils
  * 
- * @return void
+ * @return Response
  */
 
 public function index(){
@@ -31,7 +31,7 @@ public function index(){
     $pageTitle = "All Cocktails";
 
 
-    render("cocktails/index", compact('cocktails', 'pageTitle'));
+    return $this->render("cocktails/index", compact('cocktails', 'pageTitle'));
 
 
 }
@@ -54,7 +54,7 @@ public function show(){
     }
 
     if (!$id){
-        redirect("index.php?info=noId");
+        return $this->redirect("index.php?info=noId");
     }
 
     $modelCocktail = new \Models\Cocktail();
@@ -65,7 +65,7 @@ public function show(){
 
 
     if(!$cocktail) {
-        redirect("index.php?info=noId");
+        return $this->redirect("index.php?info=noId");
     }
 
 
@@ -76,7 +76,7 @@ public function show(){
 
     $pageTitle =  $cocktail['name'];
     
-    render("cocktails/show", compact('cocktail', 'comments', 'pageTitle' ));
+    return $this->render("cocktails/show", compact('cocktail', 'comments', 'pageTitle' ));
  }
 
 
@@ -88,7 +88,7 @@ public function show(){
  *  @return void 
  */
 
-public function new(){
+public function new():response{
 
     $name = null;
     $image = null;
@@ -104,10 +104,10 @@ if( $name && $image && $composition){
 
    $this->defaultModel->new($name, $image, $composition);
 
-    redirect('index.php');
+   return $this->redirect('index.php');
 }
 
-render('cocktails/create', ["pageTitle" => "new cocktail"]);
+return $this->render('cocktails/create', ["pageTitle" => "new cocktail"]);
 
 }
  /**
@@ -115,7 +115,7 @@ render('cocktails/create', ["pageTitle" => "new cocktail"]);
      * 
      * @return void
      */
-    public function delete():void
+    public function delete():Response
     {
 
     
@@ -123,13 +123,13 @@ render('cocktails/create', ["pageTitle" => "new cocktail"]);
         $id=null;
         if( !empty($_POST['id']) && ctype_digit($_POST['id'])){  $id = $_POST['id']; }
 
-        if(!$id){redirect('index.php?info=noId');}
+        if(!$id){return $this->redirect('index.php?info=noId');}
 
-        if( !$this->defaultModel->findById($id) ){ redirect('index.php?info=noId'); }
+        if( !$this->defaultModel->findById($id) ){ return $this->redirect('index.php?info=noId'); }
 
         $this->defaultModel->remove($id);
 
-        redirect('index.php');
+        return $this->redirect('index.php');
 
 
 
