@@ -1,6 +1,6 @@
 <?php
 
-    require_once "core/Controllers/Cocktail.php";
+    require_once "core/Controllers/Glace.php";
 
 
     $typeGlace = new \Controllers\Glace();

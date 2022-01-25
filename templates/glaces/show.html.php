@@ -6,7 +6,7 @@
           <div class="justify-content-center">
           <p class="card-text m-3 text-center">
              glace description: 
-             <?= $glaces['description']?>
+             <?= $glace['description']?>
             </p>
 
             

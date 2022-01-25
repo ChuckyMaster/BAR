@@ -25,7 +25,7 @@ public function __construct()
    public function findAll():array{
    
 
-    $requestAllElem = $this->pdo->query("SELECT * FROM {$this->table}");
+    $requestAllElem = $this->pdo->query("SELECT * FROM {$this->tableName}");
 
     $elements = $requestAllElem->fetchAll();
 
@@ -46,7 +46,7 @@ public function findById(int $id){
 
     
 
-    $requestOneId =  $this->pdo->prepare("SELECT *FROM {$this->table} WHERE id = :id");
+    $requestOneId =  $this->pdo->prepare("SELECT *FROM {$this->tableName} WHERE id = :id");
 
     $requestOneId->execute([
             "id" => $id

@@ -9,7 +9,12 @@
            Glace description: <?= $glace['description'] ?>
           </p>
         </div>
-        <form action=" post"><button class="btn btn-warning"> Delete</button></form>
+        <div class="buttons d-flex justify-content-center"> 
+        <form method="post" action="deleteGlace.php"
+        ><button class="btn btn-warning me-2" name="id" value="<?= $glace['id'] ?>"> Delete</button></form>
+        <a href="glace.php?id=<?= $glace['id']?>" class="btn btn-success">See</a>
+
+        </div>
       </div>
       <!-- END ONE CARD -->
 
