@@ -53,9 +53,11 @@
             <div class="col-12 mb-5 mt-5">
               <h1 class="text-secondary">Welcome to Mortal Cocktails</h1>
 
-              <a href="createCocktail.php" class="btn btn-outline-primary mt-3"> Add a Cocktail</a>
+             
+              <a href="index.php" class="btn btn-outline-primary mt-3"> Cocktails</a>
                 <a href="sandwichs.php" class="btn btn-outline-primary mt-3"> Sandwichs</a>
-                <a href="infos.php" class="btn btn-outline-primary mt-3"> infos</a>
+                <a href="glaces.php" class="btn btn-outline-primary mt-3"> Glaces</a>
+               
 
 
             </div>

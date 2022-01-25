@@ -22,7 +22,7 @@ public function save(string $description, int $prix):void
 {
 
     $sql = $this->pdo->prepare("INSERT INTO {$this->tableName} (description, prix) 
-    VALUES (:descritpion, :prix)");
+    VALUES (:description, :prix)");
 
     $sql->execute([
         'description' => $description,

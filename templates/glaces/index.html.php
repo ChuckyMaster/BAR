@@ -1,10 +1,13 @@
 
 
-  <div class="container">
-    <div class="row">
-      <div class="col-12 justify-content-center"> <a href="createGlace.php"> Create NEW ICE CREAM</a></div>
+ <div class="container">
+  <div class="row ">
+    <div class="col-12 d-flex justify-content-center"> 
+      <a href="createGlace.php" class="btn btn-info"> Create Glace</a>
     </div>
   </div>
+</div>
+
 <?php foreach($glaces as $glace){ ?>
       
       <!-- DISPLAY ONE CARD START HERE -->
