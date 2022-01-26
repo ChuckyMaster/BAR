@@ -5,7 +5,7 @@ namespace Controllers;
 
 use App\Response;
 
-require_once "core/libraries/tools.php";
+
 
     require_once "core/Models/Comment.php";
 
@@ -88,7 +88,7 @@ public function show(){
  *  @return void 
  */
 
-public function new():response{
+public function new(){
 
     $name = null;
     $image = null;
@@ -102,7 +102,7 @@ public function new():response{
 
 if( $name && $image && $composition){
 
-   $this->defaultModel->new($name, $image, $composition);
+   $this->defaultModel->save($name, $image, $composition);
 
    return $this->redirect('index.php');
 }

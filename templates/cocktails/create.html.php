@@ -1,3 +1,10 @@
+
+<!-- Method post
+
+"name"
+"image"
+"composition" -->
+
 <form method="post" >
   <div class="form-group row">
     <label for="name" class="col-sm-2 col-form-label">Name</label>
@@ -33,5 +40,6 @@
 
 
 
-  <button class="btn btn-outline-warning mt-5" name="create" action="http://localhost/bistrot/cocktail.php?id=<?= $cocktail['id'] ?>"> CREATE</button>
+  <button class="btn btn-outline-warning mt-5" type="submit"
+  action="createCocktail.php"> CREATE</button>
 </form>

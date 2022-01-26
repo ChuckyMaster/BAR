@@ -1,6 +1,8 @@
 <?php
 namespace Controllers;
 
+use App\Response;
+
 require_once "core/Models/Sandwich.php";
 require_once "core/Controllers/AbstractController.php";
 
@@ -75,6 +77,27 @@ class Sandwich extends AbstractController {
         }
 
         return $this->render("sandwichs/create", ["pageTitle" => "new casse-dalle"]);
+    }
+
+    /**
+     * Supprimer un sandwich par son ID et rediriger vers les sandwichs
+     * 
+     */
+    public function delete():Response
+    {
+        $id =null;
+        if(!empty($_POST['id']) && ctype_digit($_POST['id'])){$id= $_POST['id'];}
+
+        if(!$id){ return $this->redirect('index.php?info=noId');}
+
+        if(!$this->defaultModel->findById($id)) { 
+            return $this->redirect('index.php?info=noId');
+         }
+
+        $this->defaultModel->remove($id);
+
+        return $this->redirect('sandwichs.php');
+        
     }
 
 }
