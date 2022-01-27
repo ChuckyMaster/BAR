@@ -32,7 +32,7 @@ class Comment extends AbstractModel{
 
         ]);
 
-        $comments = $requestComments->fetchAll();
+        $comments = $requestComments->fetchAll(\PDO::FETCH_CLASS,get_class($this));
 
         return $comments;
 

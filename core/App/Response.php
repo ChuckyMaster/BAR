@@ -15,8 +15,24 @@ class Response
  * @return void
  */
 
- public static function redirect(array $parameters):void{
-    header("Location: index.php?type=".$parameters['type']."&action=".$parameters['action']);
+ public static function redirect(array $parameters=null):void{
+
+
+    $url = "";
+        if($parameters){
+
+            $url = "?";
+
+                    foreach($parameters as $key => $value){
+
+                        $newParamGet = $key."=".$value."&";
+
+                        $url.=$newParamGet;
+                    }
+        }
+
+
+    header("Location: ".$url);
     exit();
 }
 

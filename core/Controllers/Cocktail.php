@@ -48,27 +48,33 @@ public function show(){
     }
 
     if (!$id){
+
         return $this->redirect([  
-        'action'=>'cocktails',
-        'type'=>'index']);
+        'action'=>'index',
+        'type'=>'cocktail'
+        
+    ]);
     }
 
-    $cocktail = $this->$defaultModel->findById($id);
+    $cocktail = $this->defaultModel->findById($id);
     
 
 
 
     if(!$cocktail) {
-        return $this->redirect("index.php?info=noId");
+        return $this->redirect([
+            'action' => 'index',
+            'type' => 'cocktail'
+        ]);
     }
 
 
     $modelComment = new \Models\Comment();
 
 
-    $comments = $modelComment->findAllByCocktail($cocktail['id']);
+    $comments = $modelComment->findAllByCocktail($cocktail->id);
 
-    $pageTitle =  $cocktail['name'];
+    $pageTitle =  $cocktail->name;
     
     return $this->render("cocktails/show", compact('cocktail', 'comments', 'pageTitle' ));
  }
@@ -98,7 +104,7 @@ if( $name && $image && $composition){
 
    $this->defaultModel->save($name, $image, $composition);
 
-   return $this->redirect('index.php');
+   return $this->redirect();
 }
 
 return $this->render('cocktails/create', ["pageTitle" => "new cocktail"]);
@@ -117,13 +123,19 @@ return $this->render('cocktails/create', ["pageTitle" => "new cocktail"]);
         $id=null;
         if( !empty($_POST['id']) && ctype_digit($_POST['id'])){  $id = $_POST['id']; }
 
-        if(!$id){return $this->redirect('index.php?info=noId');}
+        if(!$id){return $this->redirect([
+            'type' => 'cocktail',
+            'action' => 'noId'
+        ]);}
 
-        if( !$this->defaultModel->findById($id) ){ return $this->redirect('index.php?info=noId'); }
+        if( !$this->defaultModel->findById($id) ){ return $this->redirect([
+            'type' => 'cocktail',
+            'action' => 'noId'
+        ]); }
 
         $this->defaultModel->remove($id);
 
-        return $this->redirect('index.php');
+        return $this->redirect();
 
 
 

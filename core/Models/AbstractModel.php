@@ -27,7 +27,7 @@ public function __construct()
 
     $requestAllElem = $this->pdo->query("SELECT * FROM {$this->tableName}");
 
-    $elements = $requestAllElem->fetchAll();
+    $elements = $requestAllElem->fetchAll(\PDO::FETCH_CLASS,get_class($this));
 
     return $elements;
 }

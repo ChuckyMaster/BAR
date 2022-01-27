@@ -16,7 +16,7 @@ abstract class AbstractController {
 
 
 
-        public function redirect($url):Response
+        public function redirect( ? array $url=null):Response
         {
             return \App\Response::redirect($url);
         }

@@ -5,8 +5,8 @@
           
           <div class="justify-content-center">
           <p class="card-text m-3 text-center">
-            New info number:  <?= $info['id']?>
-             <?= $info['description']?>
+            New info number:  <?= $info->id?>
+             <?= $info->description?>
             </p>
 
             
@@ -35,7 +35,7 @@
   <textarea name="content" id="" cols="30" rows="10" placeholder="Your reaction..." class="form-control"></textarea>
 </div>
 <div class="form-group mt-4">
-<button value="<?=$info['id']?>" 
+<button value="<?=$info->id?>" 
 class="btn btn-outline-secondary" 
 name="infoId">POST</button>
 
@@ -57,14 +57,14 @@ name="infoId">POST</button>
   <div class="row d-flex flex-column">
     <div class="col-12">
       <div class="comment">
-      <h4 class="mb-4 mt-4"> <?=  $reaction['author']?></h4>
-      <p> <?= $reaction['content'] ?>  </p>
+      <h4 class="mb-4 mt-4"> <?=  $reaction->author?></h4>
+      <p> <?= $reaction->content ?>  </p>
 
-      <p> ID : <?= $reaction['id']?></p>
+      <p> ID : <?= $reaction->id?></p>
     </div>
    </div>
    <form action="" method="post">
-                <button type="submit" class="btn btn-danger" name="idComment" value="<?= $reaction['id']?>">Supprimer</button>
+                <button type="submit" class="btn btn-danger" name="idComment" value="<?= $reaction->id?>">Supprimer</button>
             </form>
   </div>
 </div>

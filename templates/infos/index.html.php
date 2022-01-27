@@ -16,16 +16,16 @@
         <div class="card-body d-flex flex-column ">
          
           <p class="card-text text-center m-2">
-           News description: <?= $info['description'] ?>
+           News description: <?= $info->description ?>
           </p>
         </div>
         <div class="buttons d-flex justify-content-center"> 
         <form method="post" action="deleteGlace.php"
-        ><button class="btn btn-warning me-2" name="id" value="<?= $info['id'] ?>"> Delete</button>
+        ><button class="btn btn-warning me-2" name="id" value="<?= $info->id ?>"> Delete</button>
       </form>
 
-      
-        <a href="?type=info&action=show&id=<?= $info['id']?>" class="btn btn-success">See</a>
+
+        <a href="?type=info&action=show&id=<?= $info->id?>" class="btn btn-success">See</a>
 
         </div>
       </div>

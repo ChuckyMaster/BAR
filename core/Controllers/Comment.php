@@ -29,7 +29,7 @@ class Comment extends AbstractController{
             $comment = $this->defaultModel->findById($id);
 
 
-            return $this->redirect("cocktail.php?id{$comment['id']}");
+            return $this->redirect();
         }
 
 
@@ -55,7 +55,7 @@ class Comment extends AbstractController{
 
             if (!$cocktailId || $content || $author) {
 
-                return $this->redirect("cocktail.php?id={$cocktailId}");
+                return $this->redirect();
             }
 
             //Verifier que le cocktail existe
@@ -65,12 +65,19 @@ class Comment extends AbstractController{
             $cocktail = $modelCocktail->findById($cocktailId);
 
             if (!$cocktail) {
-                return $this->redirect("index.php?info=noId");
+                return $this->redirect([
+                    "action" => "index",
+                    "type" => "cocktail"
+                ]);
             }
 
             $this->defaultModel->save($author, $content, $cocktailId);
 
-            return $this->redirect("cocktail.php?id={$cocktailId}");
+            return $this->redirect([
+                "action" => "index",
+                "type" => "cocktail",
+                "id" => $cocktailId
+            ]);
         }
 
 
