@@ -5,13 +5,6 @@ namespace Controllers;
 
 
 
-require_once "core/libraries/tools.php";
-
-require_once "core/Controllers/AbstractController.php";
-
-require_once "core/Models/Glace.php";
-
-
 
 class Glace extends AbstractController
 {
@@ -56,7 +49,7 @@ class Glace extends AbstractController
 
         $pageTitle = $glace['description'];
 
-        $this->index();
+        return $this->render("glaces/show", compact('pageTitle', 'glace'));
 
         // render("glaces/show", compact('pageTitle', 'glace'));
 

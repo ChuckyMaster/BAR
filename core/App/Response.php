@@ -12,11 +12,11 @@ class Response
  * 
  * @param string $url
  * 
- * @return 
+ * @return void
  */
 
- public static function redirect(string $url){
-    header("Location: {$url}");
+ public static function redirect(array $parameters):void{
+    header("Location: index.php?type=".$parameters['type']."&action=".$parameters['action']);
     exit();
 }
 

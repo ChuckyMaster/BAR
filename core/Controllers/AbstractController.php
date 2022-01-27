@@ -2,15 +2,6 @@
 
 namespace Controllers;
 
-use App\Response;
-
-require_once "core/Models/Cocktail.php";
-require_once "core/Models/Comment.php";
-require_once "core/Models/Glace.php";
-require_once "core/App/Response.php";
-require_once "core/App/View.php";
-
-
 abstract class AbstractController {
 
     protected $defaultModel;

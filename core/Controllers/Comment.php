@@ -1,9 +1,6 @@
 <?php
 namespace Controllers;
 
-require_once "core/Controllers/AbstractController.php";
-require_once "core/libraries/tools.php";
-require_once "core/Models/Cocktail.php";
 
 
 class Comment extends AbstractController{

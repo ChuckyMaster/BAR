@@ -3,13 +3,7 @@
 
 namespace Controllers;
 
-use App\Response;
 
-
-
-    require_once "core/Models/Comment.php";
-
-    require_once "core/Controllers/AbstractController.php";
 
 class Cocktail extends AbstractController
 {
@@ -54,12 +48,12 @@ public function show(){
     }
 
     if (!$id){
-        return $this->redirect("index.php?info=noId");
+        return $this->redirect([  
+        'action'=>'cocktails',
+        'type'=>'index']);
     }
 
-    $modelCocktail = new \Models\Cocktail();
-
-    $cocktail = $modelCocktail->findById($id);
+    $cocktail = $this->$defaultModel->findById($id);
     
 
 
@@ -95,8 +89,8 @@ public function new(){
     $composition = null;
 
     if(!empty($_POST['name'])){ $name = htmlspecialchars($_POST['name']);}
-    if(!empty($_POST['image'])){ $name = htmlspecialchars($_POST['image']);}
-    if(!empty($_POST['composition'])){ $name = htmlspecialchars($_POST['composition']);}
+    if(!empty($_POST['image'])){ $image = htmlspecialchars($_POST['image']);}
+    if(!empty($_POST['composition'])){ $composition = htmlspecialchars($_POST['composition']);}
 
 
 

@@ -22,7 +22,7 @@ protected string $tableName = "cocktails";
      * 
      * 
      */
-    public function save(string $name, string $composition, string $image)
+    public function save(string $name, string $image, string $composition)
     {
         $sql = $this->pdo->prepare("INSERT INTO {$this->tableName} (name, image, ingredients) VALUES 
         (:name, :image, :composition)");
@@ -30,7 +30,7 @@ protected string $tableName = "cocktails";
         $sql->execute([
             'name' => $name,
             'image' =>$image,
-            'ingredients' => $composition
+            'composition' => $composition
         ]);
     }
 

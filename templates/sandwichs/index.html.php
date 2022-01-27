@@ -22,7 +22,7 @@
 
           <p> Prix: <?= $sandwich['prix'] ?> €</p>
           <div class="buttons d-flex justify-content-center">  
-          <a href="sandwich.php?id=<?= $sandwich['id']?>" class="btn btn-primary"> VIEW  </a>
+          <a href="?type=sandwich&action=show&id=<?= $sandwich['id']?><?= $sandwich['id']?>" class="btn btn-primary"> VIEW  </a>
           
           
           <form action="deleteSandwich.php" method="post" class="ms-2">

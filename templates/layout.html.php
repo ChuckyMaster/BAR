@@ -54,9 +54,10 @@
               <h1 class="text-secondary">Welcome to Mortal Cocktails</h1>
 
              
-              <a href="index.php" class="btn btn-outline-primary mt-3"> Cocktails</a>
-                <a href="sandwichs.php" class="btn btn-outline-primary mt-3"> Sandwichs</a>
-                <a href="glaces.php" class="btn btn-outline-primary mt-3"> Glaces</a>
+              <a href="?type=cocktail&action=index" class="btn btn-outline-primary mt-3"> Cocktails</a>
+                <a href="?type=sandwich&action=index" class="btn btn-outline-primary mt-3"> Sandwichs</a>
+                <a href="?type=glace&action=index" class="btn btn-outline-primary mt-3"> Glaces</a>
+                <a href="?type=info&action=index" class="btn btn-outline-primary mt-3"> Infos</a>
                
 
 

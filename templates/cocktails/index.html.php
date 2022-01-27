@@ -33,7 +33,7 @@
 
 
           <div>  
-          <a href="cocktail.php?id=<?= $cocktail['id']?>" class="btn btn-primary"> VIEW  </a>
+          <a href="?type=cocktail&action=show&id<?= $cocktail['id']?>" class="btn btn-primary"> VIEW  </a>
           </div>
           
       <form action="deleteCocktail.php" method="post" class="ms-2">

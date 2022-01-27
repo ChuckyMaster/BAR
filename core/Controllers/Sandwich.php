@@ -1,12 +1,6 @@
 <?php
 namespace Controllers;
 
-use App\Response;
-
-require_once "core/Models/Sandwich.php";
-require_once "core/Controllers/AbstractController.php";
-
-
 class Sandwich extends AbstractController {
 
     protected $defaultModelName = \Models\Sandwich::class;
@@ -25,7 +19,7 @@ class Sandwich extends AbstractController {
     }
 
 /**
- * Affiche un seule sandwiche
+ * Affiche un seule sandwich
  * 
  */
     public function show(){
