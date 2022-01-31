@@ -14,22 +14,38 @@ class Comment extends AbstractController{
          */
         public function delete()
         {
-            $id = null;
+            $idCock = null;
+            $idCom = null;
 
             if (!empty($_POST['id']) && ctype_digit($_POST['id'])) {
-                $id = $_POST['id'];
+                $idCom = $_POST['id'];
+            }
+            if (!empty($_POST['idCoke']) && ctype_digit($_POST['idCoke'])) {
+                $idCock = $_POST['idCoke'];
             }
 
             //verifier que le commentaire existe
-            if (!$id){
+            if (!$idCock || !$idCom){
                 die("ERROR ID ITEM");
             }
 
 
-            $comment = $this->defaultModel->findById($id);
+            $comment = $this->defaultModel->findById($idCom);
 
+            if(!$comment) {
+                return $this->redirect();
+            }
 
-            return $this->redirect();
+            $this->defaultModel->remove($idCom);
+
+            return $this->redirect([
+                "type" => "cocktail",
+                "action" => 'show',
+                "id" => $idCock
+            ]);
+            
+
+            
         }
 
 
@@ -53,7 +69,7 @@ class Comment extends AbstractController{
                 $content = htmlspecialchars($_POST['content']);
             }
 
-            if (!$cocktailId || $content || $author) {
+            if (!$cocktailId || !$content || !$author) {
 
                 return $this->redirect();
             }
@@ -71,10 +87,10 @@ class Comment extends AbstractController{
                 ]);
             }
 
-            $this->defaultModel->save($author, $content, $cocktailId);
+            $this->defaultModel->save($comment);
 
             return $this->redirect([
-                "action" => "index",
+                "action" => "show",
                 "type" => "cocktail",
                 "id" => $cocktailId
             ]);

@@ -23,12 +23,28 @@ class Reaction extends AbstractModel{
             "info_id" => $info_id
         ]);
 
-        $reactions = $sql->fetchAll();
+        $reactions = $sql->fetchAll(\PDO::FETCH_CLASS,get_class($this));
 
         return $reactions;
     }
 
 
+    /**
+     * enregistre une réaction dans la BDD
+     * @param string $author
+     * @param string $content
+     * @param integer $id
+     */
+    public function save(string $author, string $content, int $id){
+        $sql = $this->pdo->prepare("INSERT INTO {$this->tableName} (author, content, info_id) 
+        VALUES (:author, :content, :id)");
+
+        $sql->execute([
+            "author" => $author,
+            "content" => $content,
+            "id" => $id
+        ]);
+    }
 
 }
 

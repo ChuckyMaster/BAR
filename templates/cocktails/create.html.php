@@ -41,5 +41,5 @@
 
 
   <button class="btn btn-outline-warning mt-5" type="submit"
-  action="createCocktail.php"> CREATE</button>
+  action=""> CREATE</button>
 </form>

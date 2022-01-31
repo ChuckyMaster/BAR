@@ -1,7 +1,6 @@
 <?php
 namespace Models;
 
-require_once "AbstractModel.php";
 
 class Sandwich extends AbstractModel {
 

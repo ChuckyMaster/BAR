@@ -64,17 +64,62 @@ class Info extends AbstractController {
 
 
     }
+
+  /**
+   * 
+   * creer une nouvelle Info
+   * 
+   * @param string $author
+   * @param string $content
+   * 
+   */
+  public function new(){
+
+    
+    $content = null;
+
+   
+    if(!empty($_POST['content'])){
+        $content = $_POST['content'];
+    }
+
+
+   
+    if( $content){
+        $this->defaultModel->save( $content);
+
+        return $this->redirect( [
+            "type" => "info",
+              "action" => "index"
+        ]);
+      
+        
+    };
+
+    $pageTitle = "New Info";
+    return $this->render('infos/create', compact('pageTitle'));
+
+
+     
+
+   
+    
+
+   
+
+   
+
+  }
+
+
+
+
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

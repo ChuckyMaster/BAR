@@ -2,7 +2,6 @@
 
 namespace Models;
 
-require_once "core/Database/PdoMySQL.php";
 
 abstract class AbstractModel
 {
@@ -51,6 +50,8 @@ public function findById(int $id){
     $requestOneId->execute([
             "id" => $id
     ]);
+
+    $requestOneId->setFetchMode(\PDO::FETCH_CLASS, get_class($this));
 
     $element = $requestOneId->fetch();
 

@@ -72,9 +72,9 @@ public function show(){
     $modelComment = new \Models\Comment();
 
 
-    $comments = $modelComment->findAllByCocktail($cocktail->id);
+    $comments = $modelComment->findAllByCocktail($cocktail->getId());
 
-    $pageTitle =  $cocktail->name;
+    $pageTitle =  $cocktail->getName();
     
     return $this->render("cocktails/show", compact('cocktail', 'comments', 'pageTitle' ));
  }
@@ -102,7 +102,12 @@ public function new(){
 
 if( $name && $image && $composition){
 
-   $this->defaultModel->save($name, $image, $composition);
+    $cocktail = new \Models\Cocktail();
+    $cocktail->setName($name);
+    $cocktail->setImage($image);
+    $cocktail->setIngredients($composition);
+
+   $this->defaultModel->save($cocktail);
 
    return $this->redirect();
 }
@@ -141,6 +146,62 @@ return $this->render('cocktails/create', ["pageTitle" => "new cocktail"]);
 
     }
 
+    /**
+     * 
+     * 
+     */
+    public function edit()
+{
+
+    //si on repere le cas d'une demande de soumission 
+    //alors on prend une autre direction
+
+    $idEdit = null;
+    $name = null;
+    $image = null;
+    $ingredients = null;
+
+    if(!empty($_POST['name'])){ $name = $_POST['name'];}
+    if(!empty($image_POST[''])){ $image = $_POST['image'];}
+    if(!empty($_POST['ingredients'])){ $ingredients = $_POST['ingredients'];}
+    if(!empty($_POST['idEdit']) && ctype_digit($_POST['idEdit'])){ $idEdit = $_POST['idEdit'];}
+
+if($idEdit && $name && $image && $ingredients) {
+
+    //Dans le cas de la soumission
+
+    //verifier si le cocktail existe 
+
+    $cocktail = $this->defaultModel->findById($idEdit);
+
+    if(!$cocktail){
+        return $this->redirect();
+    }
+
+    //Si le cocktail existe, on passe au traitement
+
+
+    $this->defaultModel->update($idEdit, $name, $ingredients, $image);
+
+   return $this->redirect([
+       "type" => "cocktail",
+       "action" => "edit",
+
+   ]);
+}
+
+$id = null;
+
+if ( !empty($_GET['id']) && ctype_digit($_GET['id'])) {
+
+        $id = $_GET['id'];
+}
+
+
+
+
+
+}
 
 
 }

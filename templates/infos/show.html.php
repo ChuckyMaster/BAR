@@ -25,13 +25,23 @@
 <div class="row"> 
 
 <!-- PARTIE FORM GAUCHE -->
+
+<!-- Ajout Reaction
+
+POST
+
+string 'author'
+string 'content'
+-->
+
 <div class="col-6">  
   
-<form action="createComment.php" method="post">
+<form action="?type=reaction&action=new" method="post">
 <div class="form-group">
   <input type="text" name="author" placeholder="Your name" class="form-control-plaintext mb-5">
 </div>
 <div class="form-group">
+  
   <textarea name="content" id="" cols="30" rows="10" placeholder="Your reaction..." class="form-control"></textarea>
 </div>
 <div class="form-group mt-4">
@@ -50,7 +60,7 @@ name="infoId">POST</button>
 
 <div class="col-6"> 
 
-
+<!-- int 'infoReact_Id' pour suppression -->
 <?php foreach($reactions as $reaction) :?>
 <!-- UN COMMENTAIRE -->
 <div class="container mb-3">
@@ -63,8 +73,9 @@ name="infoId">POST</button>
       <p> ID : <?= $reaction->id?></p>
     </div>
    </div>
-   <form action="" method="post">
-                <button type="submit" class="btn btn-danger" name="idComment" value="<?= $reaction->id?>">Supprimer</button>
+   <form action="?type=reaction&action=delete" method="post">
+   <input type="hidden" name="idInfo" value="<?= $info->id ?>">
+                <button type="submit" class="btn btn-danger" name="idReact" value="<?= $reaction->id?>">Supprimer</button>
             </form>
   </div>
 </div>

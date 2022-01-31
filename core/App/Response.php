@@ -15,10 +15,10 @@ class Response
  * @return void
  */
 
- public static function redirect(array $parameters=null):void{
+ public static function redirect(?array $parameters=null):void{
 
 
-    $url = "";
+    $url = "index.php";
         if($parameters){
 
             $url = "?";

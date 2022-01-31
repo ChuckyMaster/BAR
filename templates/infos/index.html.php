@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row ">
     <div class="col-12 d-flex justify-content-center"> 
-      <a href="createInfo.php" class="btn btn-info"> Create Flash NEWS</a>
+      <a href="?type=info&action=new" class="btn btn-info"> Create Flash NEWS</a>
     </div>
   </div>
 </div>
@@ -20,7 +20,7 @@
           </p>
         </div>
         <div class="buttons d-flex justify-content-center"> 
-        <form method="post" action="deleteGlace.php"
+        <form method="post" action=""
         ><button class="btn btn-warning me-2" name="id" value="<?= $info->id ?>"> Delete</button>
       </form>
 

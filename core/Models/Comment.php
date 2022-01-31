@@ -3,11 +3,27 @@
 namespace Models;
 
 
-require_once "AbstractModel.php";
 
 class Comment extends AbstractModel{
 
+    private $author;
+    public function getAuthor(){
+        return $this->author;
+    }
+    public function setAuthor(){
+        return $this->author;
+    }
 
+    private $comment;
+    public function getComment(){
+        return $this->comment;
+    }
+    public function setComment(){
+        return $this->comment;
+    }
+
+
+ protected string $tableName = "comments";
 /**
  * 
  * 
@@ -27,8 +43,9 @@ class Comment extends AbstractModel{
         $requestComments = $this->pdo->prepare("SELECT * FROM comments
         WHERE cocktail_id = :cocktail_id");
 
+        $cocktail =  new \Models\Cocktail();
         $requestComments->execute([
-                "cocktail_id" => $cocktail_id
+                "cocktail_id" => $cocktail->getId()
 
         ]);
 
@@ -42,22 +59,22 @@ class Comment extends AbstractModel{
 
 /**
 *enregistre un commentaire dans la base de donn"és
-*@param string author
-*@param string content
-*@param integer $cocktailId
+*@param Comment $comment
+*
 */
-
-public function save(string $author, string $content, int $cocktailId):void{
+public function save(Comment $comment):void{
 
 
     $requestCreateComment = $this->pdo->prepare("INSERT INTO comments
     (author, comment, cocktail_id)
     VALUES(:comment_author, :comment_content, :cocktail_id)");
 
+    $cocktail =  new \Models\Cocktail();
+
     $requestCreateComment->execute([
-        "comment_author" => $author,
-        "comment_content" => $content,
-        "cocktail_id" => $cocktailId
+        "comment_author" => $comment->author,
+        "comment_content" => $comment->comment,
+        "cocktail_id" => $cocktail->getId()
     ]);
 }
 
